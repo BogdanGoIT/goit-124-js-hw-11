@@ -25,7 +25,11 @@ function handleSubmit(evt) {
   const searchValue = evt.target.elements['search-text'].value;
 
   if (!searchValue.trim()) {
-    alert('Пустий рядок');
+    iziToast.show({
+      message: 'Рядок пустий',
+      color: 'red',
+      position: 'topRight',
+    });
     return;
   }
 
@@ -47,7 +51,15 @@ function handleSubmit(evt) {
         });
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err);
+
+      iziToast.show({
+        message: err.message,
+        color: 'red',
+        position: 'topRight',
+      });
+    })
     .finally(() => {
       hideLoader();
       evt.target.reset();
