@@ -3,6 +3,7 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 // Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
+import { createGallery } from './render-functions';
 
 const API_KEY = '28315893-0fd806bb9dd4884845b8c425c';
 const url = 'https://pixabay.com/api/';
@@ -25,7 +26,9 @@ export function getImagesByQuery(query) {
   })
     .then(res => {
       if (res.data.hits.length > 0) {
-        console.log(res.data.hits);
+        // console.log(res.data.hits);
+
+        createGallery(res.data.hits);
       } else {
         iziToast.show({
           message:

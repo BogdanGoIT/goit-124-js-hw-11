@@ -3,8 +3,6 @@ import { getImagesByQuery } from './js/pixabay-api';
 
 const form = document.querySelector('.form');
 
-console.log(form);
-
 form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(evt) {
@@ -15,4 +13,6 @@ function handleSubmit(evt) {
   const searchValue = evt.target.elements['search-text'].value;
 
   getImagesByQuery(searchValue);
+
+  evt.target.reset();
 }
