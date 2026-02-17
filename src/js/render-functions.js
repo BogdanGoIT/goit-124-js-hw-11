@@ -1,4 +1,9 @@
-const gallery = document.querySelector('.gallery');
+// Описаний у документації
+import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+const galleryImage = document.querySelector('.gallery');
 
 export function createGallery(images) {
   console.log(images);
@@ -14,9 +19,11 @@ export function createGallery(images) {
         comments,
         downloads,
       }) => `<li class="gallery-item">
+  
         <a class="gallery-link" href="${largeImageURL}">
-        <img src="${webformatURL}" alt="${tags} class="gallery-img"/>
+        <img class="gallery-img" src="${webformatURL}" alt="${tags}"/>
         </a>
+
        
         <ul class="gallery-socials-list">
             <li class="gallery-social-item"><span>Likes</span> ${likes} </li>
@@ -29,9 +36,14 @@ export function createGallery(images) {
     )
     .join('');
 
-  gallery.innerHTML = markup;
+  galleryImage.innerHTML = markup;
+
+  let gallery = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+  });
+  gallery.refresh();
 }
 
 export function clearGallery() {
-  gallery.innerHTML = '';
+  galleryImage.innerHTML = '';
 }
