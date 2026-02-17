@@ -20,14 +20,11 @@ form.addEventListener('submit', handleSubmit);
 function handleSubmit(evt) {
   evt.preventDefault();
 
-  console.log(evt.target.elements);
-
   const searchValue = evt.target.elements['search-text'].value;
 
   if (!searchValue.trim()) {
-    iziToast.show({
-      message: 'Рядок пустий',
-      color: 'red',
+    iziToast.warning({
+      message: 'Пустий рядок',
       position: 'topRight',
     });
     return;
@@ -37,26 +34,24 @@ function handleSubmit(evt) {
   showLoader();
 
   getImagesByQuery(searchValue)
-    .then(res => {
-      if (res.data.hits.length > 0) {
-        // console.log(res.data.hits);
+    .then(hits => {
+      if (hits.length > 0) {
+        console.log('hits', hits);
 
-        createGallery(res.data.hits);
+        createGallery(hits);
       } else {
         iziToast.show({
           message:
-            'Sorry, there are no images matching your search query. Please try again!',
-          color: 'red',
+            'Sorry, there are no images matching <br> your search query. Please try again!',
+          color: '#ef4040',
           position: 'topRight',
+          messageColor: '#fafafb',
         });
       }
     })
     .catch(err => {
-      console.log(err);
-
-      iziToast.show({
+      iziToast.error({
         message: err.message,
-        color: 'red',
         position: 'topRight',
       });
     })

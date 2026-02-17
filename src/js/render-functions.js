@@ -7,8 +7,6 @@ const galleryImage = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 
 export function createGallery(images) {
-  console.log(images);
-
   const markup = images
     .map(
       ({
