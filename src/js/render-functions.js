@@ -4,6 +4,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryImage = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
 
 export function createGallery(images) {
   console.log(images);
@@ -46,4 +47,12 @@ export function createGallery(images) {
 
 export function clearGallery() {
   galleryImage.innerHTML = '';
+}
+
+export function showLoader() {
+  loader.classList.add('loader');
+}
+
+export function hideLoader() {
+  loader.classList.remove('loader');
 }

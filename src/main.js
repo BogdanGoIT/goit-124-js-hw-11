@@ -4,9 +4,16 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { getImagesByQuery } from './js/pixabay-api';
-import { clearGallery, createGallery } from './js/render-functions';
+import {
+  clearGallery,
+  createGallery,
+  hideLoader,
+  showLoader,
+} from './js/render-functions';
 
 const form = document.querySelector('.form');
+
+hideLoader();
 
 form.addEventListener('submit', handleSubmit);
 
@@ -23,6 +30,7 @@ function handleSubmit(evt) {
   }
 
   clearGallery();
+  showLoader();
 
   getImagesByQuery(searchValue)
     .then(res => {
@@ -41,6 +49,7 @@ function handleSubmit(evt) {
     })
     .catch(err => console.log(err))
     .finally(() => {
+      hideLoader();
       evt.target.reset();
     });
 }
