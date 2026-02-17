@@ -39,7 +39,8 @@ function handleSubmit(evt) {
         });
       }
     })
-    .catch(err => console.log(err));
-
-  evt.target.reset();
+    .catch(err => console.log(err))
+    .finally(() => {
+      evt.target.reset();
+    });
 }
