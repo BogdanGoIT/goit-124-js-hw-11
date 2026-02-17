@@ -10,5 +10,5 @@ import{a as u,i as m}from"./assets/vendor-COXuPeDw.js";(function(){const s=docum
             <li class="gallery-social-item"><span>Downloads</span> ${c} </li>
         </ul>
 
-      </li>`).join("");i.innerHTML=s}function y(){i.innerHTML=""}const h=document.querySelector(".form");h.addEventListener("submit",b);function b(r){r.preventDefault(),console.log(r.target.elements);const s=r.target.elements["search-text"].value;if(!s.trim()){alert("Пустий рядок");return}y(),p(s).then(l=>{l.data.hits.length>0?d(l.data.hits):m.show({message:"Sorry, there are no images matching your search query. Please try again!",color:"red",position:"topRight"})}).catch(l=>console.log(l)),r.target.reset()}
+      </li>`).join("");i.innerHTML=s}function y(){i.innerHTML=""}const h=document.querySelector(".form");h.addEventListener("submit",b);function b(r){r.preventDefault(),console.log(r.target.elements);const s=r.target.elements["search-text"].value;if(!s.trim()){alert("Пустий рядок");return}y(),p(s).then(l=>{l.data.hits.length>0?d(l.data.hits):m.show({message:"Sorry, there are no images matching your search query. Please try again!",color:"red",position:"topRight"})}).catch(l=>console.log(l)).finally(()=>{r.target.reset()})}
 //# sourceMappingURL=index.js.map
