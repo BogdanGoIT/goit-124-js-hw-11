@@ -1,5 +1,10 @@
+// Описаний у документації
+import iziToast from 'izitoast';
+// Додатковий імпорт стилів
+import 'izitoast/dist/css/iziToast.min.css';
+
 import { getImagesByQuery } from './js/pixabay-api';
-// import renderFc from './js/render-functions';
+import { clearGallery, createGallery } from './js/render-functions';
 
 const form = document.querySelector('.form');
 
@@ -12,7 +17,29 @@ function handleSubmit(evt) {
 
   const searchValue = evt.target.elements['search-text'].value;
 
-  getImagesByQuery(searchValue);
+  if (!searchValue.trim()) {
+    alert('Пустий рядок');
+    return;
+  }
+
+  clearGallery();
+
+  getImagesByQuery(searchValue)
+    .then(res => {
+      if (res.data.hits.length > 0) {
+        // console.log(res.data.hits);
+
+        createGallery(res.data.hits);
+      } else {
+        iziToast.show({
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+          color: 'red',
+          position: 'topRight',
+        });
+      }
+    })
+    .catch(err => console.log(err));
 
   evt.target.reset();
 }

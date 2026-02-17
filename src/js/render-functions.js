@@ -31,3 +31,7 @@ export function createGallery(images) {
 
   gallery.innerHTML = markup;
 }
+
+export function clearGallery() {
+  gallery.innerHTML = '';
+}
