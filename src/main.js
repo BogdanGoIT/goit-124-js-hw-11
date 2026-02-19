@@ -36,8 +36,6 @@ function handleSubmit(evt) {
   getImagesByQuery(searchValue)
     .then(hits => {
       if (hits.length > 0) {
-        console.log('hits', hits);
-
         createGallery(hits);
       } else {
         iziToast.show({
