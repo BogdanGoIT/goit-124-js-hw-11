@@ -20,9 +20,9 @@ form.addEventListener('submit', handleSubmit);
 function handleSubmit(evt) {
   evt.preventDefault();
 
-  const searchValue = evt.target.elements['search-text'].value;
+  const searchValue = evt.target.elements['search-text'].value.trim();
 
-  if (!searchValue.trim()) {
+  if (!searchValue) {
     iziToast.warning({
       message: 'Пустий рядок',
       position: 'topRight',

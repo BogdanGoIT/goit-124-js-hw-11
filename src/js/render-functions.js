@@ -6,6 +6,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const galleryImage = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 
+let gallery = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+});
+
 export function createGallery(images) {
   const markup = images
     .map(
@@ -36,10 +40,6 @@ export function createGallery(images) {
     .join('');
 
   galleryImage.innerHTML = markup;
-
-  let gallery = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-  });
   gallery.refresh();
 }
 
